@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUIStore } from '@/store/useUIStore'
 import ThemeToggle from '@/components/ui/ThemeToggle'
+import logoMark from '@/assets/Screenshot_2026-04-27_164219-removebg-preview.png'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -51,7 +52,12 @@ export default function Navbar() {
             className="group flex items-center gap-2.5"
           >
             <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-forest-700 to-forest-900 ring-1 ring-sand-100/15">
-              <span className="font-display text-base text-sand-100">P</span>
+              <img
+                src={logoMark}
+                alt="Panda"
+                className="h-7 w-7 select-none object-contain"
+                draggable={false}
+              />
               <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-ember-500 shadow-[0_0_12px_rgba(255,122,0,0.8)]" />
             </span>
             <span className={`font-display text-xl tracking-wide transition-colors duration-300 ${isDark ? 'text-sand-100' : 'text-ink-800'}`}>Panda</span>

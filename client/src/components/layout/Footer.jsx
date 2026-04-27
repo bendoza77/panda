@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useUIStore } from '@/store/useUIStore'
 import MagneticButton from '@/components/ui/MagneticButton'
+import logoMark from '@/assets/Screenshot_2026-04-27_164219-removebg-preview.png'
 
 export default function Footer() {
   const setCursorVariant = useUIStore((s) => s.setCursorVariant)
@@ -12,26 +13,26 @@ export default function Footer() {
       links: [
         { label: 'Destinations', to: '/destinations' },
         { label: 'Tours', to: '/tours' },
-        { label: 'Bespoke', to: '/contact' },
-        { label: 'Gift cards', to: '/contact' },
+        { label: 'Bespoke', to: '/bespoke' },
+        { label: 'Gift cards', to: '/gift-cards' },
       ],
     },
     {
       title: 'Studio',
       links: [
         { label: 'About Panda', to: '/about' },
-        { label: 'Press kit', to: '/about' },
-        { label: 'Careers', to: '/about' },
-        { label: 'Sustainability', to: '/about' },
+        { label: 'Press kit', to: '/press-kit' },
+        { label: 'Careers', to: '/careers' },
+        { label: 'Sustainability', to: '/sustainability' },
       ],
     },
     {
       title: 'Support',
       links: [
         { label: 'Contact', to: '/contact' },
-        { label: 'FAQ', to: '/contact' },
-        { label: 'Privacy', to: '/about' },
-        { label: 'Terms', to: '/about' },
+        { label: 'FAQ', to: '/faq' },
+        { label: 'Privacy', to: '/privacy' },
+        { label: 'Terms', to: '/terms' },
       ],
     },
   ]
@@ -63,7 +64,12 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-forest-700 to-forest-900 ring-1 ring-sand-100/15">
-                <span className="font-display text-base text-sand-100">P</span>
+                <img
+                  src={logoMark}
+                  alt="Panda"
+                  className="h-7 w-7 select-none object-contain"
+                  draggable={false}
+                />
               </span>
               <span className="font-display text-xl text-sand-100">Panda</span>
             </div>
