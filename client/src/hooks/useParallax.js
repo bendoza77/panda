@@ -7,9 +7,6 @@ export function useParallax(strength = 30) {
     const el = ref.current
     if (!el) return
 
-    // No mouse on touch devices — skip the RAF loop entirely
-    if (window.matchMedia('(pointer: coarse)').matches) return
-
     let raf = 0
     let tx = 0
     let ty = 0

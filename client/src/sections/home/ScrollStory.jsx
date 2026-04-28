@@ -1,9 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { destinations } from '@/config/destinations'
-import { useViewport } from '@/hooks/useViewport'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,70 +9,30 @@ const chapters = [
   {
     eyebrow: 'Chapter I',
     title: 'A planet, slowed down.',
-    body: 'We design journeys at the speed of memory. No rushing through five cities in a week. No 6am minibus to a checklist. Just one place, fully tasted.',
+    body:
+      'We design journeys at the speed of memory. No rushing through five cities in a week. No 6am minibus to a checklist. Just one place, fully tasted.',
     image: destinations[0].image,
     accent: 'ember',
   },
   {
     eyebrow: 'Chapter II',
     title: 'Guides who actually live there.',
-    body: 'Every Panda guide is born or rooted in the land they take you across — the kind of person who knows which baker opens at 4am and which shoreline is best at golden hour.',
+    body:
+      'Every Panda guide is born or rooted in the land they take you across — the kind of person who knows which baker opens at 4am and which shoreline is best at golden hour.',
     image: destinations[1].image,
     accent: 'forest',
   },
   {
     eyebrow: 'Chapter III',
     title: 'Stays that feel like a friend\'s house.',
-    body: 'Boutique riads, restored haylofts, off-grid cabins above tree-line. We curate places where you can leave your shoes by the door and stop performing your own holiday.',
+    body:
+      'Boutique riads, restored haylofts, off-grid cabins above tree-line. We curate places where you can leave your shoes by the door and stop performing your own holiday.',
     image: destinations[2].image,
     accent: 'sand',
   },
 ]
 
-function MobileScrollStory() {
-  return (
-    <section className="bg-forest-950" data-scene="story">
-      {chapters.map((c, i) => (
-        <motion.article
-          key={i}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.45, ease: 'easeOut' }}
-          className="relative overflow-hidden"
-        >
-          <div className="relative h-64">
-            <img
-              src={c.image}
-              alt=""
-              className="h-full w-full object-cover opacity-60"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/30 to-transparent" />
-          </div>
-          <div className="bg-forest-950 px-6 py-8">
-            <span className="mb-4 block text-[10px] uppercase tracking-[0.4em] text-ember-400">
-              {c.eyebrow}
-            </span>
-            <h2 className="font-display text-[2.4rem] leading-[0.95] text-sand-100">
-              {c.title.split(' ').map((w, j, arr) => (
-                <span key={j} className={j === arr.length - 1 ? 'italic text-ember-400' : ''}>
-                  {w}{' '}
-                </span>
-              ))}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-sand-200/80">{c.body}</p>
-            <span className="mt-6 block font-mono text-xs uppercase tracking-[0.4em] text-sand-200/40">
-              0{i + 1} / 0{chapters.length}
-            </span>
-          </div>
-        </motion.article>
-      ))}
-    </section>
-  )
-}
-
-function DesktopScrollStory() {
+export default function ScrollStory() {
   const ref = useRef(null)
   const trackRef = useRef(null)
 
@@ -110,6 +68,7 @@ function DesktopScrollStory() {
             key={i}
             className="story-panel relative flex h-screen w-screen items-center"
           >
+            {/* image side */}
             <div className="absolute inset-0">
               <img
                 src={c.image}
@@ -132,7 +91,9 @@ function DesktopScrollStory() {
                   </span>
                 ))}
               </h2>
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-sand-200/80">{c.body}</p>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-sand-200/80">
+                {c.body}
+              </p>
               <span className="mt-12 font-mono text-xs uppercase tracking-[0.4em] text-sand-200/40">
                 0{i + 1} / 0{chapters.length}
               </span>
@@ -142,9 +103,4 @@ function DesktopScrollStory() {
       </div>
     </section>
   )
-}
-
-export default function ScrollStory() {
-  const { isMobile } = useViewport()
-  return isMobile ? <MobileScrollStory /> : <DesktopScrollStory />
 }
