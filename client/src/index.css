@@ -93,10 +93,50 @@
 html.light {
   color-scheme: light;
   --bg: #fbf8f3;
-  --fg: #14110d;
+  --fg: #0a0907;
   --surface: rgba(11, 61, 46, 0.04);
   --border: rgba(11, 61, 46, 0.1);
+
+  /* Light-mode text tokens — remapped from sand to dark ink */
+  --lt-primary: #14110d;  /* ink-800  headings */
+  --lt-body:    #322d25;  /* ink-600  body paragraphs */
+  --lt-muted:   #4a4338;  /* ink-500  secondary text */
+  --lt-subtle:  #6b6253;  /* ink-400  very muted / captions */
 }
+
+/* Dark-background contexts restore the original sand colors via cascade */
+html.light [data-scene="hero"],
+html.light [class~="bg-forest-950"],
+html.light [class~="bg-forest-900"],
+html.light [class~="bg-forest-950/95"] {
+  --lt-primary: #f4ede0;
+  --lt-body:    #e9dcc1;
+  --lt-muted:   rgba(233, 220, 193, 0.7);
+  --lt-subtle:  rgba(233, 220, 193, 0.4);
+}
+
+/* Apply remapped colors to every sand text class */
+html.light .text-sand-100,
+html.light [class~="text-sand-100/90"],
+html.light [class~="text-sand-100/80"] { color: var(--lt-primary); }
+
+html.light [class~="text-sand-100/70"],
+html.light [class~="text-sand-100/60"] { color: var(--lt-body); }
+
+html.light [class~="text-sand-100/40"],
+html.light [class~="text-sand-100/30"] { color: var(--lt-subtle); }
+
+html.light .text-sand-200,
+html.light [class~="text-sand-200/85"],
+html.light [class~="text-sand-200/80"],
+html.light [class~="text-sand-200/75"] { color: var(--lt-body); }
+
+html.light [class~="text-sand-200/70"],
+html.light [class~="text-sand-200/60"] { color: var(--lt-muted); }
+
+html.light [class~="text-sand-200/50"],
+html.light [class~="text-sand-200/40"],
+html.light [class~="text-sand-200/30"] { color: var(--lt-subtle); }
 
 * {
   border-color: var(--border);
