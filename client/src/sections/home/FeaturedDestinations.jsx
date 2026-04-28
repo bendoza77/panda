@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { destinations } from '@/config/destinations'
 import { useUIStore } from '@/store/useUIStore'
+import { useViewport } from '@/hooks/useViewport'
 import SplitText from '@/components/ui/SplitText'
 
 export default function FeaturedDestinations() {
   const setCursorVariant = useUIStore((s) => s.setCursorVariant)
+  const { isMobile } = useViewport()
   return (
     <section className="relative py-32" data-scene="destinations">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
@@ -37,10 +39,14 @@ export default function FeaturedDestinations() {
           {destinations.map((d, i) => (
             <motion.div
               key={d.id}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: isMobile ? 0 : 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.9, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: isMobile ? 0.4 : 0.9,
+                delay: isMobile ? 0 : (i % 3) * 0.08,
+                ease: isMobile ? 'easeOut' : [0.16, 1, 0.3, 1],
+              }}
             >
               <Link
                 to="/destinations"

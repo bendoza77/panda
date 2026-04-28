@@ -30,6 +30,10 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
+    setScrolled(false)
+  }, [pathname])
+
+  useEffect(() => {
     setNavOpen(false)
   }, [pathname, setNavOpen])
 
@@ -40,7 +44,9 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-500 ${
-          scrolled ? 'py-3' : 'py-6'
+          scrolled
+            ? 'py-3 bg-forest-950/90 backdrop-blur-xl border-b border-sand-100/10 shadow-[0_1px_24px_rgba(0,0,0,0.4)]'
+            : 'py-6'
         }`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-12">

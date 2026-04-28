@@ -15,6 +15,9 @@ export function useLenis() {
   const lenisRef = useRef(null)
 
   useEffect(() => {
+    // Native scroll is smoother on touch devices — skip Lenis entirely
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

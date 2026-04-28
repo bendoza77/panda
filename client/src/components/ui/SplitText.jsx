@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useViewport } from '@/hooks/useViewport'
 
 export default function SplitText({
   text,
@@ -8,6 +9,24 @@ export default function SplitText({
   duration = 0.9,
   as: Tag = 'span',
 }) {
+  const { isMobile } = useViewport()
+
+  if (isMobile) {
+    return (
+      <Tag className={`inline-block ${className}`}>
+        <motion.span
+          className="inline-block"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, delay, ease: 'easeOut' }}
+        >
+          {text}
+        </motion.span>
+      </Tag>
+    )
+  }
+
   const words = text.split(' ')
   return (
     <Tag className={`inline-block ${className}`}>
